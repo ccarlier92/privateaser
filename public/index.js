@@ -169,10 +169,19 @@ events.forEach(function(event)
       }
     }
 
-
   })
 });
 
+events.forEach(function(event)
+{
+  event.commission = event.price*0.3;
+  event.commission.insurance = event.commission*0.5;
+  event.commission.treasury = event.persons;
+  event.commission.privateaser = event.commission - event.commission.insurance - event.commission.treasury;
+
+
+
+});
 console.log(bars);
 console.log(events);
 console.log(actors);
