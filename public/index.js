@@ -174,11 +174,9 @@ events.forEach(function(event)
 
 events.forEach(function(event)
 {
-  event.commission = event.price*0.3;
-  event.commission.insurance = event.commission*0.5;
+  event.commission.insurance = event.price*0.3*0.5;
   event.commission.treasury = event.persons;
-  event.commission.privateaser = event.commission - event.commission.insurance - event.commission.treasury;
-
+  event.commission.privateaser = event.price*0.3 - event.commission.insurance - event.commission.treasury;
 
 
 });
