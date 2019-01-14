@@ -189,21 +189,20 @@ events.forEach(function(event)
   }
 });
 
-for (var i =0; i<actors.length;i++ )
+for (var i =0; i<actors.length;i++ ) {
+    events.forEach(function (event) {
 
-{
-  events.forEach(function(event){
+        if (actors[i].eventId == event.id) {
+            actors[i].payment[0].amount = event.price;
+            actors[i].payment[2].amount = event.commission.insurance;
+            actors[i].payment[3].amount = event.commission.privateaser;
+            actors[i].payment[4].amount = event.commission.treasury;
+            actors[i].payment[1].amoutnt = event.price - (actors[i].payment[2].amount + actors[i].payment[4].amount + actors[i].payment[3].amount);
+        }
 
-    if (actors[i].eventId == event.id){
-      actors[i].payment[0].amount= event.price;
-      actors[i].payment[2].amount= event.commission.insurance;
-      actors[i].payment[3].amount= event.commission.privateaser ;
-      actors[i].payment[4].amount = event.commission.treasury;
-      actors[i].payment[1].amoutnt = event.price - (actors[i].payment[2].amount + actors[i].payment[4].amount + actors[i].payment[3].amount);
-    }
+    })
 
-  });
-
+};
 
 
 /*events.forEach(function (event)
