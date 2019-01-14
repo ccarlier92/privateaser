@@ -195,11 +195,12 @@ events.forEach(function (event)
   {
     if(actor.eventId == event.id)
     {
-      actor.booker.amount = event.price;
-      actor.insurance.amount = event.commission.insurance;
-      actor.treasury.amount = event.commission.treasury;
-      actor.privateaser.amount = event.commission.privateaser;
+      actor.booker = event.price;
+      actor.insurance= event.commission.insurance;
+      actor.treasury= event.commission.treasury;
+      actor.privateaser= event.commission.privateaser;
       if(event.deductibleReduction == true) actor.privateaser += event.deductibleReductionAmount;
+      actor.bar =  event.price - (actor.insurance + actor.treasury + actor.privateaser);
 
     }
   })
