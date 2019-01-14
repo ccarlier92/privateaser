@@ -36,6 +36,7 @@ const events = [{
     'deductibleReduction': false
   },
   'price': 0,
+  'deductibleReductionAmount' : 0,
   'commission': {
     'insurance': 0,
     'treasury': 0,
@@ -51,6 +52,7 @@ const events = [{
     'deductibleReduction': true
   },
   'price': 0,
+  'deductibleReductionAmount' : 0,
   'commission': {
     'insurance': 0,
     'treasury': 0,
@@ -66,6 +68,7 @@ const events = [{
     'deductibleReduction': true
   },
   'price': 0,
+  'deductibleReductionAmount' : 0,
   'commission': {
     'insurance': 0,
     'treasury': 0,
@@ -178,8 +181,32 @@ events.forEach(function(event)
   event.commission.treasury = event.persons;
   event.commission.privateaser = event.price*0.3 - event.commission.insurance - event.commission.treasury;
 
+  if(event.deductibleReduction == true)
+  {
+    event.deductibleReductionAmount = event.persons;
+    event.price += event.deductibleReductionAmount;
 
+  }
 });
+
+events.forEach(function (event)
+{
+  actors.forEach(function(actor)
+  {
+    if(actor.eventId == event.id)
+    {
+      actor.booker = event.price;
+      actor.insurance = event.commission.insurance;
+      actor.treasury = event.commission.treasury;
+      actor.privateaser = event.commission.privateaser;
+      if(event.deductibleReduction == true) actor.privateaser += event.deductibleReductionAmount;
+      actor.bar = event.price - (actor.insurance + actor.treasury + actor.privateaser);
+    }
+  })
+});
+
+
+
 console.log(bars);
 console.log(events);
 console.log(actors);
