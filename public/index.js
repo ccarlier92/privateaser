@@ -200,7 +200,7 @@ events.forEach(function (event)
       actor.treasury.amount = event.commission.treasury;
       actor.privateaser.amount = event.commission.privateaser;
       if(event.deductibleReduction == true) actor.privateaser += event.deductibleReductionAmount;
-      //actor.bar.amount = event.price - (actor.insurance + actor.treasury + actor.privateaser);
+
     }
   })
 });
